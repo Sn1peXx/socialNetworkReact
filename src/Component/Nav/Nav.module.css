@@ -1,0 +1,24 @@
+.nav {
+    width: 20%;
+    height: 91vh;
+}
+
+.nav_link {
+    color: white;
+    font-size: 20px;
+    margin-bottom: 15px;
+    padding-left: 20px;
+    cursor: pointer;
+    display: flex;
+    text-decoration: none;
+    opacity: .7;
+}
+
+.nav_link:first-child {
+    padding-top: 30px;
+}
+
+.nav_link:hover {
+    transition: .1s;
+    opacity: 1;
+}
