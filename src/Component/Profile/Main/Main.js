@@ -1,9 +1,10 @@
 import './Main.css'
 import profile from '../../../resources/Q5gquT-Dlhc.jpeg'
-import Posts from "../Posts/Posts";
 import MyPosts from "../MyPosts/MyPosts";
+import PostsContainer from "../Posts/PostsContainer";
 
-const Main = () => {
+const Main = ({userPosts, dispatch}) => {
+
     return (
         <div className="main_content">
             <div className="my_description">
@@ -24,9 +25,8 @@ const Main = () => {
                     </div>
                 </div>
             </div>
-            <Posts />
-            <MyPosts text="Учу react в 10 раз" userName="Andrey Lavrusenko"/>
-            <MyPosts text="Блээээ" userName="Andrey Lavrusenko"/>
+            <PostsContainer dispatch={dispatch}/>
+            <MyPosts userPosts={userPosts}/>
         </div>
     )
 }
