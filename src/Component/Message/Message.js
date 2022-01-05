@@ -1,5 +1,5 @@
 import {NavLink} from "react-router-dom";
-import {updatePostActionCreator} from "../../Redux/store";
+import {updatePostActionCreator} from "../../Redux/messageReducer";
 
 import './Message.css';
 import ChatContainer from "./Chat/ChatContainer";

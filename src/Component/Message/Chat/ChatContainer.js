@@ -1,4 +1,4 @@
-import {sendMessageCreator} from "../../../Redux/store";
+import {sendMessageCreator} from "../../../Redux/messageReducer";
 
 import Chat from "./Chat";
 

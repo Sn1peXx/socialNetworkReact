@@ -4,11 +4,7 @@ const SET_USERS = 'SET_USERS';
 
 
 let initialState = {
-    users: [
-        {id: 1, follow: false, userName: "Максим Торопов", status: 'Школа № 9', location: {country: 'Россия', city: 'Санкт-Петербург'}},
-        {id: 2, follow: true, userName: "Сергей Перфильев", status: 'СПбГЭУ', location: {country: 'Россия', city: 'Москва'}},
-        {id: 3, follow: false, userName: "Даниил Капалыгин", status: 'Технический колледж управления и коммерции (СПб ТКУиК, бывш. ЛРАСТ)', location: {country: 'Россия', city: 'Екатеринбург'}},
-    ]
+    users: []
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -20,7 +16,7 @@ const usersReducer = (state = initialState, action) => {
                 users: state.users.map(item => {
                     if (item.id === action.id) {
                         console.log(item.id)
-                        return {...item, follow: false}
+                        return {...item, followed: false}
                     }
                     return item;
                 })
@@ -31,7 +27,7 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 users: state.users.map(item => {
                     if (item.id === action.id) {
-                        return {...item, follow: true}
+                        return {...item, followed: true}
                     }
                     return item;
                 })

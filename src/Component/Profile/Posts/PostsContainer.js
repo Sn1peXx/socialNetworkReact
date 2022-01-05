@@ -1,4 +1,4 @@
-import {addPostActionCreator} from "../../../Redux/store";
+import {addPostActionCreator} from "../../../Redux/profileReducer";
 import Posts from "./Posts";
 
 const PostsContainer = ({dispatch}) => {

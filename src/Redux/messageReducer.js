@@ -1,5 +1,6 @@
-// const UPDATE_ACTIVE_DIALOG = 'UPDATE-ACTIVE-DIALOG';
+const UPDATE_ACTIVE_DIALOG = 'UPDATE-ACTIVE-DIALOG';
 const SEND_MESSAGE = 'SEND_MESSAGE';
+
 let maxIdMessage = 3;
 
 const initialState = {
@@ -42,6 +43,20 @@ const messageReducer = (state = initialState, action) => {
 
         default:
             return state;
+    }
+}
+
+export const sendMessageCreator = (text) => {
+    return {
+        type: SEND_MESSAGE,
+        text: text
+    }
+}
+
+export const updatePostActionCreator = (item) => {
+    return {
+        type: UPDATE_ACTIVE_DIALOG,
+        id: item.id
     }
 }
 
