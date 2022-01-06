@@ -1,28 +1,24 @@
 import React from "react";
-import axios from "axios";
+import {NavLink} from "react-router-dom";
 
-import avatar from '../../../resources/customers.png';
+import avatar from "../../../resources/customers.png";
+
 import './Users.css'
 
 
-const Users = ({users, followAccount, unfollowAccount, setUsersAction}) => {
+const Users = (props) => {
 
-    const getUsers = () => {
-        if (users.length === 0) {
-            axios.get("https://social-network.samuraijs.com/api/1.0/users")
-                .then(res => setUsersAction(res.data.items));
-        }
-    }
-
-    const content = users.map(item => {
+    const content = props.users.map(item => {
         return (
             <div className="user_block" key={item.id}>
                 <div className="user_left">
-                    <img src={item.photos.small !== null ? item.photos.small : avatar} alt="user avatar" className="user_avatar"/> <br/>
+                   <NavLink to={'/profile/' + item.id}>
+                       <img src={item.photos.small !== null ? item.photos.small : avatar} alt="user avatar" className="user_avatar"/> <br/>
+                   </NavLink>
                     {item.followed ?
-                        <button onClick={() => followAccount(item.id)}
+                        <button onClick={() => props.followAccount(item.id)}
                                 className="user_follow posts_send">Отписаться</button> :
-                        <button onClick={() => unfollowAccount(item.id)}
+                        <button onClick={() => props.unfollowAccount(item.id)}
                                 className="user_follow posts_send">Подписаться</button>
                     }
                 </div>
@@ -32,16 +28,15 @@ const Users = ({users, followAccount, unfollowAccount, setUsersAction}) => {
                     <p className="user_location">{"item.location.country"} · {"item.location.city"}</p>
                 </div>
             </div>
-        );
+        )
     })
 
     return (
         <div className="user">
             {content}
-            <button onClick={() => getUsers()} className="posts_send user_more">Загурзить</button>
+            <button onClick={() => props.updateCurrentPage()} className="posts_send user_more">Дальше</button>
         </div>
     )
-
 }
 
-export default Users
+export default Users;

@@ -1,7 +1,15 @@
-import Users from "./User/Users";
-import {followAccount, setUsersAction, unfollowAccount} from "../../Redux/usersReducer";
+import UsersAPIComponent from "./UsersAPIComponent";
 
-const UsersContainer = ({dispatch, users}) => {
+import {
+    followAccount,
+    setCurrentPage,
+    setIsFetching,
+    setUsersAction,
+    unfollowAccount
+} from "../../Redux/usersReducer";
+
+
+const UsersContainer = ({dispatch, users, currentPage, isFetching}) => {
 
     const onUserFollow = (id) => {
         dispatch(followAccount(id));
@@ -15,9 +23,26 @@ const UsersContainer = ({dispatch, users}) => {
         dispatch(setUsersAction(users));
     }
 
+    const currentPageHandler = (page) => {
+        dispatch(setCurrentPage(page + 1));
+    }
+
+    const fetchLoadingHandler = (fetch) => {
+        dispatch(setIsFetching(fetch));
+    }
+
 
     return (
-        <Users users={users} followAccount={onUserFollow} unfollowAccount={onUserUnfollow} setUsersAction={setUserHandler}/>
+        <UsersAPIComponent
+            users={users}
+            followAccount={onUserFollow}
+            unfollowAccount={onUserUnfollow}
+            currentPage={currentPage}
+            setUsersAction={setUserHandler}
+            setCurrentPage={currentPageHandler}
+            isFetching={isFetching}
+            setIsFetching={fetchLoadingHandler}
+        />
     )
 }
 

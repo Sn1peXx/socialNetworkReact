@@ -43,5 +43,11 @@
 }
 
 .user_more {
+    float: none;
+    margin-left: 205px;
+    margin-bottom: 50px;
+}
+
+.loading {
     margin: 0 auto;
 }

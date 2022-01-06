@@ -1,12 +1,12 @@
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 import Header from "../Header/Header";
 import Nav from "../Nav/Nav";
-import Main from "../Profile/Main/Main";
 import Message from "../Message/Message";
 import UsersContainer from "../Users/UsersContainer";
 
 import './App.css'
+import ProfileContainer from "../Profile/Main/ProfileContainer";
 
 
 const App = ({dispatch, store}) => {
@@ -20,27 +20,30 @@ const App = ({dispatch, store}) => {
                     <div className="container">
                         <div className="wrapper">
                             <Nav />
-                            <Routes>
-                                <Route
-                                    path="/profile"
-                                    element={<Main
+                            <Switch>
+                                <Route path="/profile/:userId">
+                                    <ProfileContainer
                                         userPosts={profilePage.userPosts}
+                                        profile={profilePage.profile}
                                         dispatch={dispatch}
-                                    />}
-                                />
-                                <Route
-                                    path="/message/*"
-                                    element={<Message
+                                    />
+                                </Route>
+                                <Route path="/message">
+                                    <Message
                                         messageUserData={messagesPage.messageUserData}
                                         messageUserChat={messagesPage.messageUserChat}
                                         dispatch={dispatch}
-                                    />}
-                                />
-                                <Route
-                                    path="/users"
-                                    element={<UsersContainer users={usersPage.users} dispatch={dispatch} />}
-                                />
-                            </Routes>
+                                    />
+                                </Route>
+                                <Route path="/users">
+                                    <UsersContainer
+                                        users={usersPage.users}
+                                        currentPage={usersPage.currentPage}
+                                        isFetching={usersPage.isFetching}
+                                        dispatch={dispatch}
+                                    />
+                                </Route>
+                            </Switch>
                         </div>
                     </div>
                 </div>
