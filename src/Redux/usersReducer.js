@@ -7,7 +7,7 @@ const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
 let initialState = {
     users: [],
-    currentPage: 2,
+    currentPage: 12,
     isFetching: true
 }
 
@@ -19,7 +19,6 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 users: state.users.map(item => {
                     if (item.id === action.id) {
-                        console.log(item.id)
                         return {...item, followed: false}
                     }
                     return item;
@@ -54,7 +53,7 @@ const usersReducer = (state = initialState, action) => {
 export const followAccount = (id) => ({type: FOLLOW, id: id});
 export const unfollowAccount = (id) => ({type: UNFOLLOW, id: id});
 export const setUsersAction = (users) => ({type: SET_USERS, users});
-export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
+export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage: currentPage});
 export const setIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
 
 export default usersReducer;

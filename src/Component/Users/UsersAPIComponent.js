@@ -24,6 +24,7 @@ export default class UsersAPIComponent extends React.Component {
     updateCurrentPage = () => {
         this.props.setCurrentPage(this.props.currentPage);
         this.getPost(`?page=${this.props.currentPage}&count=25`);
+
     }
 
 

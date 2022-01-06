@@ -7,7 +7,7 @@ import './Profile.css'
 import Preloader from "../../../Common/Preloader/Preloader";
 
 
-const Profile = ({userPosts, dispatch, profile}) => {
+const Profile = ({userPosts, profile}) => {
 
     if (!profile) {
         return <Preloader />
@@ -38,7 +38,7 @@ const Profile = ({userPosts, dispatch, profile}) => {
                     </div>
                 </div>
             </div>
-            <PostsContainer dispatch={dispatch}/>
+            <PostsContainer/>
             <MyPosts userPosts={userPosts}/>
         </div>
     )

@@ -1,17 +1,15 @@
-import {sendMessageCreator} from "../../../Redux/messageReducer";
-
 import Chat from "./Chat";
 
 import '../Message.css'
 
-const ChatContainer = ({messageUserChat, dispatch}) => {
+const ChatContainer = (props) => {
 
     const onSendMessageClick = (text) => {
-        dispatch(sendMessageCreator(text));
+        props.sendMessageCreator(text);
     }
 
     return (
-        <Chat messageUserChat={messageUserChat} sendMessageCreator={onSendMessageClick} />
+        <Chat messageUserChat={props.messageUserChat} sendMessageCreator={onSendMessageClick} />
     )
 }
 

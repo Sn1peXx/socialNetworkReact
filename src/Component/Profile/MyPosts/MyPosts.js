@@ -1,8 +1,8 @@
 import profile from '../../../resources/Q5gquT-Dlhc.jpeg'
 
-const MyPosts = ({userPosts}) => {
+const MyPosts = (props) => {
 
-    const content = userPosts.map(item => {
+    const content = props.userPosts.map(item => {
         return (
             <div className="my_post" key={item.id}>
                 <div className="post">

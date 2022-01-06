@@ -7,7 +7,6 @@ import './Users.css'
 
 
 const Users = (props) => {
-
     const content = props.users.map(item => {
         return (
             <div className="user_block" key={item.id}>

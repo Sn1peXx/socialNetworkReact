@@ -1,4 +1,5 @@
 import UsersAPIComponent from "./UsersAPIComponent";
+import {connect} from "react-redux";
 
 import {
     followAccount,
@@ -9,41 +10,34 @@ import {
 } from "../../Redux/usersReducer";
 
 
-const UsersContainer = ({dispatch, users, currentPage, isFetching}) => {
-
-    const onUserFollow = (id) => {
-        dispatch(followAccount(id));
+const mapStateToProps = state => {
+    return {
+        users: state.usersPage.users,
+        currentPage: state.usersPage.currentPage,
+        isFetching: state.usersPage.isFetching
     }
-
-    const onUserUnfollow = (id) => {
-        dispatch(unfollowAccount(id));
-    }
-
-    const setUserHandler = (users) => {
-        dispatch(setUsersAction(users));
-    }
-
-    const currentPageHandler = (page) => {
-        dispatch(setCurrentPage(page + 1));
-    }
-
-    const fetchLoadingHandler = (fetch) => {
-        dispatch(setIsFetching(fetch));
-    }
-
-
-    return (
-        <UsersAPIComponent
-            users={users}
-            followAccount={onUserFollow}
-            unfollowAccount={onUserUnfollow}
-            currentPage={currentPage}
-            setUsersAction={setUserHandler}
-            setCurrentPage={currentPageHandler}
-            isFetching={isFetching}
-            setIsFetching={fetchLoadingHandler}
-        />
-    )
 }
+
+const mapDispatchToProps = dispatch => {
+    return {
+        followAccount: id => {
+            dispatch(followAccount(id));
+        },
+        unfollowAccount: id => {
+            dispatch(unfollowAccount(id));
+        },
+        setUsersAction: users => {
+            dispatch(setUsersAction(users));
+        },
+        setCurrentPage: page => {
+            dispatch(setCurrentPage(page + 1));
+        },
+        setIsFetching: fetch => {
+            dispatch(setIsFetching(fetch));
+        }
+    }
+}
+
+const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent);
 
 export default UsersContainer;

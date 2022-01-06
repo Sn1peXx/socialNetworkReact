@@ -1,18 +1,19 @@
 import {NavLink} from "react-router-dom";
-import {updatePostActionCreator} from "../../Redux/messageReducer";
 
 import './Message.css';
 import ChatContainer from "./Chat/ChatContainer";
 
 
-const Message = ({messageUserData, messageUserChat, dispatch}) => {
+const Message = (props) => {
 
-    const content = messageUserData.map(item => {
+    let state = props.messagesPage;
+
+    const content = state.messageUserData.map(item => {
+
         return (
-            <MessagePerson key={item.id} {...item} onActiveChat={() => dispatch(updatePostActionCreator(item))} />
+            <MessagePerson key={item.id} {...item}  />
         )
     });
-
 
     return (
         <>
@@ -22,19 +23,16 @@ const Message = ({messageUserData, messageUserChat, dispatch}) => {
                     {content}
                 </div>
             </div>
-            <ChatContainer messageUserChat={messageUserChat} dispatch={dispatch}/>
+            <ChatContainer messageUserChat={state.messageUserChat} sendMessageCreator={props.sendMessageCreator} />
         </>
     );
 }
 
 
-const MessagePerson = ({id, userName, active, onActiveChat}) => {
-
-    let clazz = active ? "message_person active_chat" : 'message_person';
-
+const MessagePerson = ({id, userName}) => {
 
     return (
-        <NavLink to={`/message/${id}`} key={id} onClick={onActiveChat} className={clazz}>{userName}</NavLink>
+        <NavLink to={`/message/${id}`} key={id}  className='message_person'>{userName}</NavLink>
     )
 }
 

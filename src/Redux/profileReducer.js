@@ -20,8 +20,10 @@ const profileReducer = (state = initialState, action) => {
                 text: action.postMessage
             }
 
-            state.userPosts.push(newPost);
-            return state;
+            return {
+                ...state,
+                userPosts: [...state.userPosts, newPost]
+            }
 
         case SET_POSTS:
             return {...state, profile: action.profile}

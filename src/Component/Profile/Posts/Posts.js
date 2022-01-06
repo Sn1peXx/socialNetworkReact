@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-const Posts = ({addPostActionCreator}) => {
+const Posts = (props) => {
 
     const [text, setText] = useState('');
 
@@ -9,7 +9,7 @@ const Posts = ({addPostActionCreator}) => {
     }
 
     const userSaveHandler = () => {
-        addPostActionCreator(text);
+        props.addPostActionCreator(text);
         setText('');
     }
 
