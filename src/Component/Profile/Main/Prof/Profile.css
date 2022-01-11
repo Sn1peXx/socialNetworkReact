@@ -45,7 +45,7 @@ h2, p {
 
 .posts {
     margin-top: 100px;
-    margin-bottom: 140px;
+    margin-bottom: 100px;
 }
 
 .posts_title {
@@ -118,4 +118,9 @@ h2, p {
     padding-top: 100px;
     margin-left: -140px;
     padding-bottom: 20px;
+}
+
+.status {
+    margin-top: 40px;
+    padding-bottom: 70px;
 }

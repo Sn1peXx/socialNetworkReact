@@ -2,14 +2,13 @@ import React from "react";
 import {compose} from "redux";
 import Users from "./User/Users";
 import Preloader from "../Common/Preloader/Preloader";
+import {connect} from "react-redux";
 
 import {
     follow,
     getUsers,
     unfollow,
 } from "../../Redux/usersReducer";
-import {connect} from "react-redux";
-
 
 
 class UsersContainer extends React.Component {

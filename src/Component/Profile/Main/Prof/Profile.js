@@ -1,12 +1,13 @@
 import MyPosts from "../../MyPosts/MyPosts";
 import PostsContainer from "../../Posts/PostsContainer";
 import Preloader from "../../../Common/Preloader/Preloader";
+import ProfileStatus from "../../ProfileStatus/ProfileStatus";
 
 import avatar from '../../../../resources/customers.png'
 import './Profile.css'
 
 
-const Profile = ({userPosts, profile}) => {
+const Profile = ({userPosts, profile, status, updateUserStatus}) => {
 
     if (!profile) {
         return <Preloader />
@@ -36,6 +37,7 @@ const Profile = ({userPosts, profile}) => {
                     </div>
                 </div>
             </div>
+            <ProfileStatus status={status} updateUserStatus={updateUserStatus} />
             <PostsContainer/>
             <MyPosts userPosts={userPosts}/>
         </div>
