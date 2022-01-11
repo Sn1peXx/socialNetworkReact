@@ -1,8 +1,8 @@
 import {NavLink} from "react-router-dom";
 
-import './Message.css';
 import ChatContainer from "./Chat/ChatContainer";
 
+import './Message.css';
 
 const Message = (props) => {
 

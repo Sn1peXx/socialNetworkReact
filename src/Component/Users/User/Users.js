@@ -7,18 +7,29 @@ import './Users.css'
 
 
 const Users = (props) => {
+
     const content = props.users.map(item => {
+
         return (
             <div className="user_block" key={item.id}>
                 <div className="user_left">
                    <NavLink to={'/profile/' + item.id}>
                        <img src={item.photos.small !== null ? item.photos.small : avatar} alt="user avatar" className="user_avatar"/> <br/>
                    </NavLink>
-                    {item.followed ?
-                        <button onClick={() => props.followAccount(item.id)}
-                                className="user_follow posts_send">Отписаться</button> :
-                        <button onClick={() => props.unfollowAccount(item.id)}
-                                className="user_follow posts_send">Подписаться</button>
+                    {
+                        item.followed ?
+                            <button disabled={props.followingInProgress.some(id => id === item.id)} className="user_follow posts_send" onClick={() => {
+                                props.unfollow(item.id)
+                            }}
+
+                            >Отписаться</button> :
+
+                            <button disabled={props.followingInProgress.some(id => id === item.id)} className="user_follow posts_send" onClick={() => {
+                                props.follow(item.id)
+                            }}
+
+                            >Подписаться</button>
+
                     }
                 </div>
                 <div className="user_right">
@@ -33,7 +44,9 @@ const Users = (props) => {
     return (
         <div className="user">
             {content}
-            <button onClick={() => props.updateCurrentPage()} className="posts_send user_more">Дальше</button>
+            <button onClick={() => {
+                props.updateCurrentPage()
+            }} className="posts_send user_more">Дальше</button>
         </div>
     )
 }

@@ -1,43 +1,54 @@
-import UsersAPIComponent from "./UsersAPIComponent";
-import {connect} from "react-redux";
+import React from "react";
+import {compose} from "redux";
+import Users from "./User/Users";
+import Preloader from "../Common/Preloader/Preloader";
 
 import {
-    followAccount,
-    setCurrentPage,
-    setIsFetching,
-    setUsersAction,
-    unfollowAccount
+    follow,
+    getUsers,
+    unfollow,
 } from "../../Redux/usersReducer";
+import {connect} from "react-redux";
 
+
+
+class UsersContainer extends React.Component {
+
+    componentDidMount() {
+        this.props.getUsers();
+    }
+
+    updateCurrentPage = () => {
+        this.props.getUsers();
+    }
+
+    render() {
+        return <>
+            {this.props.isFetching ? <Preloader/> :
+                <Users
+                    updateCurrentPage={this.updateCurrentPage}
+                    users={this.props.users}
+                    follow={this.props.follow}
+                    unfollow={this.props.unfollow}
+                    toggleFollowingProgress={this.props.toggleFollowingProgress}
+                    followingInProgress={this.props.followingInProgress}
+                />
+            }
+        </>
+    }
+}
 
 const mapStateToProps = state => {
     return {
         users: state.usersPage.users,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        followAccount: id => {
-            dispatch(followAccount(id));
-        },
-        unfollowAccount: id => {
-            dispatch(unfollowAccount(id));
-        },
-        setUsersAction: users => {
-            dispatch(setUsersAction(users));
-        },
-        setCurrentPage: page => {
-            dispatch(setCurrentPage(page + 1));
-        },
-        setIsFetching: fetch => {
-            dispatch(setIsFetching(fetch));
-        }
-    }
-}
 
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent);
-
-export default UsersContainer;
+// export default connect(mapStateToProps, {getUsers, follow, unfollow})(UsersContainer);
+export default compose(
+    connect(mapStateToProps, {getUsers, follow, unfollow})
+)(UsersContainer)
