@@ -3,11 +3,11 @@ import React from "react";
 import {withRouter} from "react-router-dom";
 import {compose} from "redux";
 
-import Profile from "./Prof/Profile";
-import {getUserProfile, getUserStatus, updateUserStatus} from "../../../Redux/profileReducer";
-import {WithAuthRedirect} from "../../../hoc/WithAuthRedirect";
+import Profile from "./Profile";
+import {getUserProfile, getUserStatus, updateUserStatus} from "../../Redux/profileReducer";
+import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 
-import './Prof/Profile.css';
+import './Profile.module.css';
 
 
 class ProfileContainer extends React.Component {

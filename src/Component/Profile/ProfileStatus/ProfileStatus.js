@@ -1,6 +1,8 @@
 import {useEffect, useRef, useState} from "react";
 import React from "react";
 
+import profileStyle from "../Profile.module.css";
+
 // Мой статус
 const ProfileStatus = ({status, updateUserStatus}) => {
 
@@ -32,14 +34,14 @@ const ProfileStatus = ({status, updateUserStatus}) => {
     }, [prevStatus, stateStatus])
 
     return (
-        <div className="status">
-            <h2 className="posts_title">Мой статус</h2>
+        <div className={profileStyle.status}>
+            <h2>Мой статус</h2>
             {
                 editStatus
                     ?<form>
-                        <input type="text" onChange={onStatusChange} value={stateStatus} placeholder="Что у вас нового?" autoFocus={true} onBlur={toggleStatusMode} className="posts_input"/>
+                        <input type="text" onChange={onStatusChange} value={stateStatus} placeholder="Что у вас нового?" autoFocus={true} onBlur={toggleStatusMode} className={profileStyle.posts_input} />
                     </form>
-                    :<p className="profile_answer" onDoubleClick={toggleStatusMode}>{status || "-------"}</p>
+                    :<p className={profileStyle.profile_answer} onDoubleClick={toggleStatusMode}>{status || "-------"}</p>
             }
         </div>
     )

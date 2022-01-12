@@ -1,7 +1,7 @@
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 import Nav from "../Nav/Nav";
-import ProfileContainer from "../Profile/Main/ProfileContainer";
+import ProfileContainer from "../Profile/ProfileContainer";
 import MessageContainer from "../Message/MessageContainer";
 import UsersContainer from "../Users/UsersContainer";
 import HeaderContainer from "../Header/HeaderContainer";

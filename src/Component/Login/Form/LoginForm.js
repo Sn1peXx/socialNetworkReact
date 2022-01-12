@@ -1,6 +1,7 @@
 import React from "react";
 import {useFormik} from "formik";
 import * as Yup from 'yup';
+import loginStyle from "../Login.module.css";
 
 const LoginForm = (props) => {
 
@@ -24,7 +25,7 @@ const LoginForm = (props) => {
         <form onSubmit={formik.handleSubmit}>
             <div className="login">
                 <input
-                    className="input_login"
+                    className={loginStyle.input_login}
                     id="email"
                     name="email"
                     value={formik.values.email}
@@ -32,10 +33,11 @@ const LoginForm = (props) => {
                     onBlur={formik.handleBlur}
                     type="email"
                     placeholder={"Введите логин"}/>
-                {formik.errors.email && formik.touched.email ? <div className="error">{formik.errors.email}</div> : null}
+                {formik.errors.email && formik.touched.email ? <div className={loginStyle.error}>{formik.errors.email}</div> : null}
+                <br/>
                 <input
                     type="password"
-                    className="input_login"
+                    className={loginStyle.input_login}
                     placeholder={"Введите пароль"}
                     id={"password"}
                     name={"password"}
@@ -43,11 +45,11 @@ const LoginForm = (props) => {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                 />
-                {formik.errors.password && formik.touched.password ? <div className="error">{formik.errors.password}</div> : null}
+                {formik.errors.password && formik.touched.password ? <div className={loginStyle.error}>{formik.errors.password}</div> : null}
                 <br/>
-                <label className="login_remember">
+                <label className={loginStyle.login_remember}>
                     <input
-                        className="login_checkbox"
+                        className={loginStyle.login_checkbox}
                         type="checkbox"
                         name={"terms"}
                         value={formik.values.terms}
@@ -57,9 +59,9 @@ const LoginForm = (props) => {
 
                 Запомнить меня</label>
             </div>
-            {formik.errors.terms && formik.touched.terms ? <div className="error">{formik.errors.terms}</div> : null}
-            {props.error ? <p className="error_main">Неверный логин или пароль</p> : null}
-            <button className="login_btn" type={"submit"} >Войти</button>
+            {formik.errors.terms && formik.touched.terms ? <div className={loginStyle.error}>{formik.errors.terms}</div> : null}
+            {props.error ? <p className={loginStyle.error_main}>Неверный логин или пароль</p> : null}
+            <button className={loginStyle.login_btn} type={"submit"} >Войти</button>
         </form>
     )
 }

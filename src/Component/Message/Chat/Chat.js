@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-import '../Message.css'
+import messageStyle from '../Message.module.css'
 
 
 const Chat = ({messageUserChat, sendMessageCreator}) => {
@@ -23,11 +23,11 @@ const Chat = ({messageUserChat, sendMessageCreator}) => {
     });
 
     return (
-        <div className="chat">
+        <div className={messageStyle.chat}>
             {content}
             <form>
-                <textarea className="chat_area" value={text} onChange={onNewMessageChange} name="chat_area" cols="70" rows="3" placeholder="Место для сообщения"/>
-                <button className="posts_send chat_send" type="button" onClick={() => onSendMessageClick()}>Отправить</button>
+                <textarea className={messageStyle.chat_area} value={text} onChange={onNewMessageChange} name="chat_area" cols="70" rows="3" placeholder="Место для сообщения"/>
+                <button className={messageStyle.chat_send} type="button" onClick={() => onSendMessageClick()}>Отправить</button>
             </form>
         </div>
     )
@@ -36,9 +36,9 @@ const Chat = ({messageUserChat, sendMessageCreator}) => {
 
 const ChatPerson = ({by, message}) => {
     return (
-        <div className="chat_message">
-            <div className="chat_by">{by}</div>
-            <div className="chat_text">{message}</div>
+        <div className={messageStyle.chat_message}>
+            <div className={messageStyle.chat_by}>{by}</div>
+            <div className={messageStyle.chat_text}>{message}</div>
         </div>
     )
 }

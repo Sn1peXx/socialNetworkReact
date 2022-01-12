@@ -42,6 +42,15 @@
     box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
 }
 
+.input_login:-webkit-autofill,
+.input_login:-webkit-autofill:focus {
+    color: #b2afaf;
+    background-color: #323336 !important;
+    border-color: #323336;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
+}
+
 .login_remember {
     color: #e5e3e3;
     font-size: 19px;

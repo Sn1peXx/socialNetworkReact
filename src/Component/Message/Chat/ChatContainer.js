@@ -1,6 +1,6 @@
 import Chat from "./Chat";
 
-import '../Message.css'
+import '../Message.module.css'
 
 const ChatContainer = (props) => {
 

@@ -40,12 +40,29 @@
 
 .user_follow {
     width: 140px;
+    background-color: #5E5E5E;
+    color: white;
+    opacity: .9;
+    border: #5E5E5E;
+    padding: 10px 30px;
+    margin-top: 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    float: right;
 }
 
 .user_more {
     float: none;
     margin-left: 205px;
     margin-bottom: 50px;
+    background-color: #5E5E5E;
+    color: white;
+    opacity: .9;
+    border: #5E5E5E;
+    padding: 10px 30px;
+    margin-top: 20px;
+    border-radius: 6px;
+    cursor: pointer;
 }
 
 .loading {

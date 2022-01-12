@@ -11,6 +11,10 @@ h2, p {
     margin: 0;
 }
 
+.wrapper {
+    display: flex;
+}
+
 .my_description {
     display: flex;
 }
@@ -44,7 +48,7 @@ h2, p {
 }
 
 .posts {
-    margin-top: 100px;
+    margin-top: 60px;
     margin-bottom: 100px;
 }
 

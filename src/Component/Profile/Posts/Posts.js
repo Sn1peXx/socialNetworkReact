@@ -1,5 +1,7 @@
 import {useState} from "react";
 
+import profileStyle from '../Profile.module.css'
+
 const Posts = (props) => {
 
     const [text, setText] = useState('');
@@ -14,11 +16,22 @@ const Posts = (props) => {
     }
 
     return (
-        <div className="posts">
-            <h2 className="posts_title">Мои записи</h2>
+        <div className={profileStyle.posts}>
+            <h2 className={profileStyle.posts_title}>Мои записи</h2>
             <form>
-                <input type="text" placeholder="Что у вас нового?" onChange={onTextChange} value={text} className="posts_input"/>
-                <button className="posts_send" type="button" onClick={() => userSaveHandler()}>Поделиться</button>
+                <input
+                    type="text"
+                    value={text}
+                    onChange={onTextChange}
+                    placeholder="Что у вас нового?"
+                    className={profileStyle.posts_input}
+                />
+                <button
+                    type="button"
+                    className={profileStyle.posts_send}
+                    onClick={() => userSaveHandler()}>
+                    Поделиться
+                </button>
             </form>
         </div>
     )

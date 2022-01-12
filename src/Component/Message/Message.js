@@ -2,7 +2,7 @@ import {NavLink} from "react-router-dom";
 
 import ChatContainer from "./Chat/ChatContainer";
 
-import './Message.css';
+import messageStyle from './Message.module.css';
 
 const Message = (props) => {
 
@@ -17,9 +17,9 @@ const Message = (props) => {
 
     return (
         <>
-            <div className="message">
-                <h1 className="message_title">Мои чаты</h1>
-                <div className="message_dialogs">
+            <div className={messageStyle.message}>
+                <h1 className={messageStyle.message_title}>Мои чаты</h1>
+                <div className={messageStyle.message_dialogs}>
                     {content}
                 </div>
             </div>
@@ -32,7 +32,7 @@ const Message = (props) => {
 const MessagePerson = ({id, userName}) => {
 
     return (
-        <NavLink to={`/message/${id}`} key={id}  className='message_person'>{userName}</NavLink>
+        <NavLink to={`/message/${id}`} key={id}  className={messageStyle.message_person}>{userName}</NavLink>
     )
 }
 

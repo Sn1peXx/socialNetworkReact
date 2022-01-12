@@ -3,7 +3,7 @@ import {NavLink} from "react-router-dom";
 
 import avatar from "../../../resources/customers.png";
 
-import './Users.css'
+import userStyle from './Users.module.css'
 
 
 const Users = (props) => {
@@ -11,20 +11,20 @@ const Users = (props) => {
     const content = props.users.map(item => {
 
         return (
-            <div className="user_block" key={item.id}>
-                <div className="user_left">
+            <div className={userStyle.user_block} key={item.id}>
+                <div className={userStyle.user_left}>
                    <NavLink to={'/profile/' + item.id}>
-                       <img src={item.photos.small !== null ? item.photos.small : avatar} alt="user avatar" className="user_avatar"/> <br/>
+                       <img src={item.photos.small !== null ? item.photos.small : avatar} alt="user avatar" className={userStyle.user_avatar} /> <br/>
                    </NavLink>
                     {
                         item.followed ?
-                            <button disabled={props.followingInProgress.some(id => id === item.id)} className="user_follow posts_send" onClick={() => {
+                            <button disabled={props.followingInProgress.some(id => id === item.id)} className={userStyle.user_follow} onClick={() => {
                                 props.unfollow(item.id)
                             }}
 
                             >Отписаться</button> :
 
-                            <button disabled={props.followingInProgress.some(id => id === item.id)} className="user_follow posts_send" onClick={() => {
+                            <button disabled={props.followingInProgress.some(id => id === item.id)} className={userStyle.user_follow} onClick={() => {
                                 props.follow(item.id)
                             }}
 
@@ -32,21 +32,19 @@ const Users = (props) => {
 
                     }
                 </div>
-                <div className="user_right">
-                    <h4 className="user_name">{item.name}</h4>
-                    <p className="user_status">{item.status ? item.status : 'В сети'}</p>
-                    <p className="user_location">{"item.location.country"} · {"item.location.city"}</p>
+                <div className={userStyle.user_right}>
+                    <h4 className={userStyle.user_name}>{item.name}</h4>
+                    <p className={userStyle.user_status}>{item.status ? item.status : 'В сети'}</p>
+                    <p className={userStyle.user_location}>{"item.location.country"} · {"item.location.city"}</p>
                 </div>
             </div>
         )
     })
 
     return (
-        <div className="user">
+        <div>
             {content}
-            <button onClick={() => {
-                props.updateCurrentPage()
-            }} className="posts_send user_more">Дальше</button>
+            <button onClick={props.updateCurrentPage} className={userStyle.user_more}>Дальше</button>
         </div>
     )
 }

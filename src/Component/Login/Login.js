@@ -1,7 +1,7 @@
 import React from "react";
 import {Redirect} from "react-router-dom";
 
-import './Login.css'
+import loginStyle from './Login.module.css'
 import LoginForm from "./Form/LoginForm";
 
 
@@ -12,8 +12,8 @@ const Login = (props) => {
     }
 
     return (
-       <div className="login_main">
-           <h1 className="login_title">Войдите в свой аккаунт</h1>
+       <div className={loginStyle.login_main}>
+           <h1 className={loginStyle.login_title}>Войдите в свой аккаунт</h1>
             <LoginForm setAuthUserData={props.setAuthUserData} error={props.error} isAuth={props.isAuth} />
        </div>
 
