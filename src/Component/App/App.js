@@ -5,9 +5,9 @@ import ProfileContainer from "../Profile/Main/ProfileContainer";
 import MessageContainer from "../Message/MessageContainer";
 import UsersContainer from "../Users/UsersContainer";
 import HeaderContainer from "../Header/HeaderContainer";
-import LoginPage from "../Login/Login";
 
 import './App.css'
+import LoginContainer from "../Login/LoginContainer";
 
 
 const App = () => {
@@ -30,7 +30,7 @@ const App = () => {
                                    render={() => <UsersContainer /> }
                             />
                             <Route path="/login"
-                                   render={() => <LoginPage /> }
+                                   render={() => <LoginContainer /> }
                             />
                         </Switch>
                     </div>
