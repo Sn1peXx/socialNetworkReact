@@ -1,26 +1,9 @@
 import React from "react";
-import {useFormik} from "formik";
-import * as Yup from "yup";
 
 import messageStyle from '../Message.module.css'
 
 
-const Chat = ({messageUserChat, sendMessageCreator}) => {
-
-    const formik = useFormik({
-        initialValues: {
-            message: ''
-        },
-        validationSchema: Yup.object({
-            message: Yup.string().min(1, "Минимум 1 символ" ).required("Обязательное поле")
-        }),
-        onSubmit: values => {
-            if (values.trim > 0) {
-                sendMessageCreator(values.message);
-                values.message = '';
-            }
-        }
-    })
+const Chat = ({messageUserChat, formik}) => {
 
     const content = messageUserChat.map(item => {
         return (

@@ -65,7 +65,6 @@ const usersReducer = (state = initialState, action) => {
 export const followAccount = (id) => ({type: FOLLOW, id: id});
 export const unfollowAccount = (id) => ({type: UNFOLLOW, id: id});
 export const setUsersAction = (users) => ({type: SET_USERS, users});
-export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage: currentPage});
 export const setIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
 export const toggleFollowingProgress = (isFetching, userId) => ({type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId});
 

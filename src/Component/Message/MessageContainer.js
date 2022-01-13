@@ -4,13 +4,16 @@ import {sendMessageCreator} from "../../Redux/messageReducer";
 import Message from "./Message";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 import {compose} from "redux";
+import {getMessageChat, getMessageData} from "../../Redux/Selectors/messageSelector";
 
 
 const mapStateToProps = state => {
     return {
-        messagesPage: state.messagesPage
+        messageUserData: getMessageData(state),
+        messageUserChat: getMessageChat(state),
     }
 }
+
 
 const mapDispatchToProps = dispatch => {
     return {

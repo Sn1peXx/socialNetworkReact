@@ -13,10 +13,10 @@ import {initializeApp} from "../../Redux/appReducer";
 import Preloader from "../Common/Preloader/Preloader";
 
 import './App.css'
+import {initializedData} from "../../Redux/Selectors/appSelector";
 
 
 class App extends React.Component {
-
 
     componentDidMount() {
         this.props.initializeApp();
@@ -65,7 +65,7 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        initialized: state.app.initialized
+        initialized: initializedData(state)
     }
 }
 

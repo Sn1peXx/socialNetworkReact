@@ -6,9 +6,7 @@ import messageStyle from './Message.module.css';
 
 const Message = (props) => {
 
-    let state = props.messagesPage;
-
-    const content = state.messageUserData.map(item => {
+    const content = props.messageUserData.map(item => {
 
         return (
             <MessagePerson key={item.id} {...item}  />
@@ -23,7 +21,7 @@ const Message = (props) => {
                     {content}
                 </div>
             </div>
-            <ChatContainer messageUserChat={state.messageUserChat} sendMessageCreator={props.sendMessageCreator} />
+            <ChatContainer messageUserChat={props.messageUserChat} sendMessageCreator={props.sendMessageCreator} />
         </>
     );
 }

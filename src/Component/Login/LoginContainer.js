@@ -3,10 +3,12 @@ import {compose} from "redux";
 import {connect} from "react-redux";
 
 import Login from "./Login";
+import {getAuthError, getAuthInfo} from "../../Redux/Selectors/authSelector";
 
 import {
     setAuthUserData
 } from "../../Redux/authReducer";
+
 
 
 class LoginContainer extends React.Component {
@@ -20,8 +22,8 @@ class LoginContainer extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        isAuth: state.auth.isAuth,
-        error: state.auth.error
+        isAuth: getAuthInfo(state),
+        error: getAuthError(state)
     }
 }
 

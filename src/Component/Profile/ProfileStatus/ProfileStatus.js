@@ -39,7 +39,15 @@ const ProfileStatus = ({status, updateUserStatus}) => {
             {
                 editStatus
                     ?<form>
-                        <input type="text" onChange={onStatusChange} value={stateStatus} placeholder="Что у вас нового?" autoFocus={true} onBlur={toggleStatusMode} className={profileStyle.posts_input} />
+                        <input
+                            type="text"
+                            onChange={onStatusChange}
+                            value={stateStatus}
+                            placeholder="Что у вас нового?"
+                            autoFocus={true}
+                            onBlur={toggleStatusMode}
+                            className={profileStyle.posts_input}
+                        />
                     </form>
                     :<p className={profileStyle.profile_answer} onDoubleClick={toggleStatusMode}>{status || "-------"}</p>
             }

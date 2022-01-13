@@ -9,6 +9,7 @@ import {
     getUsers,
     unfollow,
 } from "../../Redux/usersReducer";
+import {getCurrentPage, getFetching, getFollowing, getUsersPage} from "../../Redux/Selectors/userSelector";
 
 
 class UsersContainer extends React.Component {
@@ -39,15 +40,14 @@ class UsersContainer extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        users: state.usersPage.users,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress
+        users: getUsersPage(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getFetching(state),
+        followingInProgress: getFollowing(state)
     }
 }
 
 
-// export default connect(mapStateToProps, {getUsers, follow, unfollow})(UsersContainer);
 export default compose(
     connect(mapStateToProps, {getUsers, follow, unfollow})
 )(UsersContainer)
