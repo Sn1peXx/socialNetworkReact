@@ -1,20 +1,26 @@
-import {useState} from "react";
+import React from "react";
+import {useFormik} from "formik";
+import * as Yup from "yup";
 
 import messageStyle from '../Message.module.css'
 
 
 const Chat = ({messageUserChat, sendMessageCreator}) => {
 
-    const [text, setText] = useState('');
-
-    const onNewMessageChange = (event) => {
-        setText(event.target.value)
-    }
-
-    const onSendMessageClick = () => {
-        sendMessageCreator(text);
-        setText('');
-    }
+    const formik = useFormik({
+        initialValues: {
+            message: ''
+        },
+        validationSchema: Yup.object({
+            message: Yup.string().min(1, "Минимум 1 символ" ).required("Обязательное поле")
+        }),
+        onSubmit: values => {
+            if (values.trim > 0) {
+                sendMessageCreator(values.message);
+                values.message = '';
+            }
+        }
+    })
 
     const content = messageUserChat.map(item => {
         return (
@@ -25,9 +31,19 @@ const Chat = ({messageUserChat, sendMessageCreator}) => {
     return (
         <div className={messageStyle.chat}>
             {content}
-            <form>
-                <textarea className={messageStyle.chat_area} value={text} onChange={onNewMessageChange} name="chat_area" cols="70" rows="3" placeholder="Место для сообщения"/>
-                <button className={messageStyle.chat_send} type="button" onClick={() => onSendMessageClick()}>Отправить</button>
+            <form onSubmit={formik.handleSubmit}>
+            <textarea
+                className={messageStyle.chat_area}
+                name="message"
+                cols="70" rows="3"
+                value={formik.values.message}
+                onChange={formik.handleChange}
+                placeholder="Место для сообщения"
+            />
+                <button
+                    className={messageStyle.chat_send}
+                    type={"submit"}
+                >Отправить</button>
             </form>
         </div>
     )

@@ -28,6 +28,7 @@ const messageReducer = (state = initialState, action) => {
             }
 
             state.messageUserChat.push(newMessage);
+
             return state;
 
         default:

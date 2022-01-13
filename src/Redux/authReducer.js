@@ -32,15 +32,15 @@ const authReducer = (state= initialState, action) => {
     }
 }
 
-export const setUserData = (userId, email, login) => ({type: SET_USER_DATA, data: {userId, email, login}});
+export const setUserData = (userId, email, login, isAuth) => ({type: SET_USER_DATA, data: {userId, email, login, isAuth}});
 export const toggleErrorMessage = (error) => ({type: SET_ERROR_MESSAGE, error: error})
 
 export const getAuthUserData = () => dispatch => {
-    authAPI.authMe()
+    return authAPI.authMe()
         .then(res => {
             if (res.data.resultCode === 0) {
                 let {id, email, login} = res.data.data;
-                dispatch(setUserData(id, email, login));
+                dispatch(setUserData(id, email, login, true));
             }
         })
 }
@@ -49,9 +49,18 @@ export const setAuthUserData = (email, password, terms) => dispatch => {
     authAPI.authUser(email, password, terms)
         .then(res => {
             if (res.data.resultCode === 0) {
-                dispatch(getAuthUserData);
+                dispatch(getAuthUserData());
             } else {
                 dispatch(toggleErrorMessage(true));
+            }
+        })
+}
+
+export const logoutAuthUserData = () => dispatch => {
+    authAPI.authLogout()
+        .then(res => {
+            if (res.data.resultCode === 0) {
+                dispatch(setUserData(null, null, null, false));
             }
         })
 }

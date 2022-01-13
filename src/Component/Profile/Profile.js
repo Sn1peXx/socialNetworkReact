@@ -1,6 +1,5 @@
 import MyPosts from "./Posts/MyPosts";
 import PostsContainer from "./Posts/PostsContainer";
-import Preloader from "../Common/Preloader/Preloader";
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
 
 import avatar from '../../resources/customers.png'
@@ -10,7 +9,7 @@ import profileStyle from './Profile.module.css'
 const Profile = ({userPosts, profile, status, updateUserStatus}) => {
 
     if (!profile) {
-        return <Preloader />
+        return null
     }
 
    return (

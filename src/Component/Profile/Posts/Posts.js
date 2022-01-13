@@ -1,37 +1,40 @@
-import {useState} from "react";
+import React from "react";
+import {useFormik} from "formik";
+import * as Yup from "yup";
 
 import profileStyle from '../Profile.module.css'
 
+
 const Posts = (props) => {
 
-    const [text, setText] = useState('');
-
-    const onTextChange = (event) => {
-        setText(event.target.value)
-    }
-
-    const userSaveHandler = () => {
-        props.addPostActionCreator(text);
-        setText('');
-    }
+    const formik = useFormik({
+        initialValues: {
+            message: ''
+        },
+        validationSchema: Yup.object({
+            message: Yup.string().min(1, "Минимум 1 символ" ).required("Обязательное поле")
+        }),
+        onSubmit: values => {
+            props.addPostActionCreator(values.message);
+            values.message = '';
+        }
+    })
 
     return (
         <div className={profileStyle.posts}>
             <h2 className={profileStyle.posts_title}>Мои записи</h2>
-            <form>
-                <input
-                    type="text"
-                    value={text}
-                    onChange={onTextChange}
+            <form onSubmit={formik.handleSubmit}>
+                <textarea
+                    name="message"
+                    value={formik.values.message}
+                    onChange={formik.handleChange}
                     placeholder="Что у вас нового?"
                     className={profileStyle.posts_input}
                 />
                 <button
-                    type="button"
                     className={profileStyle.posts_send}
-                    onClick={() => userSaveHandler()}>
-                    Поделиться
-                </button>
+                    type={"submit"}
+                >Отправить</button>
             </form>
         </div>
     )
