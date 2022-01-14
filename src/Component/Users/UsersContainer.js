@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {compose} from "redux";
 import Users from "./User/Users";
 import Preloader from "../Common/Preloader/Preloader";
@@ -12,30 +12,30 @@ import {
 import {getCurrentPage, getFetching, getFollowing, getUsersPage} from "../../Redux/Selectors/userSelector";
 
 
-class UsersContainer extends React.Component {
+const UsersContainer = (props) => {
 
-    componentDidMount() {
-        this.props.getUsers();
+    useEffect(() => {
+        props.getUsers();
+    }, []);
+
+    const updateCurrentPage = () => {
+        props.getUsers();
     }
 
-    updateCurrentPage = () => {
-        this.props.getUsers();
-    }
-
-    render() {
-        return <>
-            {this.props.isFetching ? <Preloader/> :
+    return (
+        <>
+            {props.isFetching ? <Preloader/> :
                 <Users
-                    updateCurrentPage={this.updateCurrentPage}
-                    users={this.props.users}
-                    follow={this.props.follow}
-                    unfollow={this.props.unfollow}
-                    toggleFollowingProgress={this.props.toggleFollowingProgress}
-                    followingInProgress={this.props.followingInProgress}
+                    updateCurrentPage={updateCurrentPage}
+                    users={props.users}
+                    follow={props.follow}
+                    unfollow={props.unfollow}
+                    followingInProgress={props.followingInProgress}
                 />
             }
         </>
-    }
+    )
+
 }
 
 const mapStateToProps = state => {

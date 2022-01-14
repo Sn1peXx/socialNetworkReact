@@ -4,9 +4,9 @@ import ChatContainer from "./Chat/ChatContainer";
 
 import messageStyle from './Message.module.css';
 
-const Message = (props) => {
+const Message = ({messageUserData, messageUserChat, sendMessageCreator}) => {
 
-    const content = props.messageUserData.map(item => {
+    const content = messageUserData.map(item => {
 
         return (
             <MessagePerson key={item.id} {...item}  />
@@ -21,7 +21,7 @@ const Message = (props) => {
                     {content}
                 </div>
             </div>
-            <ChatContainer messageUserChat={props.messageUserChat} sendMessageCreator={props.sendMessageCreator} />
+            <ChatContainer messageUserChat={messageUserChat} sendMessageCreator={sendMessageCreator} />
         </>
     );
 }

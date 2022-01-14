@@ -5,10 +5,10 @@ import {compose} from "redux";
 
 import Profile from "./Profile";
 import {getUserProfile, getUserStatus, updateUserStatus} from "../../Redux/profileReducer";
-
-import './Profile.module.css';
 import {getProfile, getStatus, getUsersPosts} from "../../Redux/Selectors/profileSelector";
 import {getAuthUserId} from "../../Redux/Selectors/authSelector";
+
+import './Profile.module.css';
 
 
 class ProfileContainer extends React.Component {

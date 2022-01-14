@@ -3,7 +3,7 @@ import {useFormik} from "formik";
 import * as Yup from 'yup';
 import loginStyle from "../Login.module.css";
 
-const LoginForm = (props) => {
+const LoginForm = ({setAuthUserData, error}) => {
 
     const formik = useFormik({
         initialValues: {
@@ -17,7 +17,7 @@ const LoginForm = (props) => {
             terms: Yup.boolean()
         }),
         onSubmit: values => {
-            props.setAuthUserData(values.email, values.password, values.terms);
+            setAuthUserData(values.email, values.password, values.terms);
         }
     })
 
@@ -60,7 +60,7 @@ const LoginForm = (props) => {
                 Запомнить меня</label>
             </div>
             {formik.errors.terms && formik.touched.terms ? <div className={loginStyle.error}>{formik.errors.terms}</div> : null}
-            {props.error ? <p className={loginStyle.error_main}>Неверный логин или пароль</p> : null}
+            {error ? <p className={loginStyle.error_main}>Неверный логин или пароль</p> : null}
             <button className={loginStyle.login_btn} type={"submit"} >Войти</button>
         </form>
     )

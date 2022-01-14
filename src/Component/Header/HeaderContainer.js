@@ -5,11 +5,10 @@ import Header from "./Header";
 import {logoutAuthUserData} from "../../Redux/authReducer";
 import {getAuthInfo, getAuthLogin} from "../../Redux/Selectors/authSelector";
 
-class HeaderContainer extends React.Component {
+const HeaderContainer = (props) => {
 
-    render() {
-        return <Header {...this.props} />
-    }
+    return <Header {...props} />
+
 }
 
 const mapStateToProps = state => {

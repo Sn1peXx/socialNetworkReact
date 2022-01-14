@@ -1,9 +1,8 @@
 import profile from '../../../resources/Q5gquT-Dlhc.jpeg'
 import profileStyle from '../Profile.module.css'
 
-const MyPosts = (props) => {
-
-    const content = props.userPosts.map(item => {
+const MyPosts = ({userPosts}) => {
+    const content = [...userPosts].reverse().map(item => {
         return (
             <div className={profileStyle.my_post} key={item.id}>
                 <div className={profileStyle.post}>

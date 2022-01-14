@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import profileStyle from '../Profile.module.css'
 
 
-const Posts = (props) => {
+const Posts = ({addPostActionCreator}) => {
 
     const formik = useFormik({
         initialValues: {
@@ -15,7 +15,7 @@ const Posts = (props) => {
             message: Yup.string().min(1, "Минимум 1 символ" ).required("Обязательное поле")
         }),
         onSubmit: values => {
-            props.addPostActionCreator(values.message);
+            addPostActionCreator(values.message);
             values.message = '';
         }
     })

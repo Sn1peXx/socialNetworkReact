@@ -1,4 +1,4 @@
-const SEND_MESSAGE = 'SEND_MESSAGE';
+const SEND_MESSAGE = 'message/SEND_MESSAGE';
 
 let maxIdMessage = 3;
 

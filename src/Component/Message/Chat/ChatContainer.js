@@ -4,7 +4,7 @@ import '../Message.module.css'
 import {useFormik} from "formik";
 import * as Yup from "yup";
 
-const ChatContainer = (props) => {
+const ChatContainer = ({sendMessageCreator, messageUserChat}) => {
 
     const formik = useFormik({
         initialValues: {
@@ -14,13 +14,13 @@ const ChatContainer = (props) => {
             message: Yup.string().min(1, "Минимум 1 символ" ).required("Обязательное поле")
         }),
         onSubmit: values => {
-            props.sendMessageCreator(values.message);
+            sendMessageCreator(values.message);
             values.message = '';
         }
     })
 
     return (
-        <Chat messageUserChat={props.messageUserChat} formik={formik} />
+        <Chat messageUserChat={messageUserChat} formik={formik} />
     )
 }
 

@@ -6,9 +6,9 @@ import avatar from "../../../resources/customers.png";
 import userStyle from './Users.module.css'
 
 
-const Users = (props) => {
+const Users = ({users, followingInProgress, unfollow, follow, updateCurrentPage}) => {
 
-    const content = props.users.map(item => {
+    const content = users.map(item => {
 
         return (
             <div className={userStyle.user_block} key={item.id}>
@@ -18,14 +18,14 @@ const Users = (props) => {
                    </NavLink>
                     {
                         item.followed ?
-                            <button disabled={props.followingInProgress.some(id => id === item.id)} className={userStyle.user_follow} onClick={() => {
-                                props.unfollow(item.id)
+                            <button disabled={followingInProgress.some(id => id === item.id)} className={userStyle.user_follow} onClick={() => {
+                                unfollow(item.id)
                             }}
 
                             >Отписаться</button> :
 
-                            <button disabled={props.followingInProgress.some(id => id === item.id)} className={userStyle.user_follow} onClick={() => {
-                                props.follow(item.id)
+                            <button disabled={followingInProgress.some(id => id === item.id)} className={userStyle.user_follow} onClick={() => {
+                                follow(item.id)
                             }}
 
                             >Подписаться</button>
@@ -44,7 +44,7 @@ const Users = (props) => {
     return (
         <div>
             {content}
-            <button onClick={props.updateCurrentPage} className={userStyle.user_more}>Дальше</button>
+            <button onClick={updateCurrentPage} className={userStyle.user_more}>Дальше</button>
         </div>
     )
 }

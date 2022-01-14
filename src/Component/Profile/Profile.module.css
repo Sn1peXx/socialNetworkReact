@@ -47,6 +47,10 @@ h2, p {
     opacity: .9;
 }
 
+.profile_title {
+    margin-bottom: 30px;
+}
+
 .posts {
     margin-top: 60px;
     margin-bottom: 100px;

@@ -35,7 +35,7 @@ const ProfileStatus = ({status, updateUserStatus}) => {
 
     return (
         <div className={profileStyle.status}>
-            <h2>Мой статус</h2>
+            <h2 className={profileStyle.profile_title}>Мой статус</h2>
             {
                 editStatus
                     ?<form>
