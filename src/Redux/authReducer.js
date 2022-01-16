@@ -52,7 +52,6 @@ export const setAuthUserData = (email, password, terms) => async dispatch => {
     } else {
         dispatch(toggleErrorMessage(true));
     }
-
 }
 
 export const logoutAuthUserData = () => async dispatch => {
