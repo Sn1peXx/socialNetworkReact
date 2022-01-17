@@ -13,3 +13,7 @@ export const getAuthUserId = state => {
 export const getAuthLogin = state => {
     return state.auth.login;
 }
+
+export const getCapthcaUrl = state => {
+    return state.auth.captchaUrl;
+}

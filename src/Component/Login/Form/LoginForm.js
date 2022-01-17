@@ -3,13 +3,14 @@ import {useFormik} from "formik";
 import * as Yup from 'yup';
 import loginStyle from "../Login.module.css";
 
-const LoginForm = ({setAuthUserData, error}) => {
+const LoginForm = ({setAuthUserData, error, captchaUrl}) => {
 
     const formik = useFormik({
         initialValues: {
             email: '',
             password: '',
-            terms: false
+            terms: false,
+            captcha: ''
         },
         validationSchema: Yup.object({
             email: Yup.string().min(2, "Минимум 2 символа" ).required("Обязательное поле"),
@@ -17,7 +18,7 @@ const LoginForm = ({setAuthUserData, error}) => {
             terms: Yup.boolean()
         }),
         onSubmit: values => {
-            setAuthUserData(values.email, values.password, values.terms);
+            setAuthUserData(values.email, values.password, values.terms, values.captcha);
         }
     })
 
@@ -61,7 +62,21 @@ const LoginForm = ({setAuthUserData, error}) => {
             </div>
             {formik.errors.terms && formik.touched.terms ? <div className={loginStyle.error}>{formik.errors.terms}</div> : null}
             {error ? <p className={loginStyle.error_main}>Неверный логин или пароль</p> : null}
+
+            {captchaUrl ? <img src={captchaUrl} alt='captcha'/> : null} <br/>
+            {captchaUrl
+                ? <input
+                    className={loginStyle.captcha_input}
+                    type="text"
+                    name={"captcha"}
+                    value={formik.values.captcha}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                />
+                : null}
+            <br/>
             <button className={loginStyle.login_btn} type={"submit"} >Войти</button>
+
         </form>
     )
 }

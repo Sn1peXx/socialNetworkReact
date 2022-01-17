@@ -30,8 +30,8 @@ export const authAPI = {
         return instance.get(`auth/me`)
     },
 
-    authUser(email, password, terms) {
-        return instance.post(`auth/login`, { email, password, terms });
+    authUser(email, password, terms, captcha = null) {
+        return instance.post(`auth/login`, { email, password, terms, captcha });
     },
     authLogout() {
         return instance.delete(`auth/login`);
@@ -60,5 +60,12 @@ export const profileAPI = {
     },
     setUserData(userId, aboutMe, fullName, lookingForAJobDescription) {
         return instance.put(`profile`, {userId, aboutMe, fullName, lookingForAJobDescription});
+    }
+}
+
+export const securityAPI = {
+    getCaptchaUrl() {
+        console.log('сработало')
+        return instance.get(`security/get-captcha-url`);
     }
 }
