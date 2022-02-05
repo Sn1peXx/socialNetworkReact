@@ -1,11 +1,20 @@
-import React from "react";
+import * as React from "react";
 import {Redirect} from "react-router-dom";
 
+// @ts-ignore
 import loginStyle from './Login.module.css'
-import LoginForm from "./Form/LoginForm";
+// @ts-ignore
+import LoginForm from "./Form/LoginForm.tsx";
+import {FC} from "react";
 
+type LoginType = {
+    isAuth: boolean,
+    error: string,
+    setAuthUserData: () => void,
+    captchaUrl: string
+}
 
-const Login = ({isAuth, error, setAuthUserData, captchaUrl}) => {
+const Login: FC<LoginType> = ({isAuth, error, setAuthUserData, captchaUrl}) => {
 
     if (isAuth) {
         return <Redirect to={"/profile"}/>

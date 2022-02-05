@@ -2,20 +2,36 @@ const SEND_MESSAGE = 'message/SEND_MESSAGE';
 
 let maxIdMessage = 3;
 
+type messageType = {
+    id: number,
+    userName: string
+}
+
+type messageChatType = {
+    id: number,
+    sendBy: string,
+    text: string
+}
+
 const initialState = {
     messageUserData: [
         {id: 1, userName: 'Maxim'},
         {id: 2, userName: 'Diana'},
         {id: 3, userName: "Oleg"}
-    ],
+    ] as messageType[],
 
     messageUserChat: [
         {id: 1, sendBy: 'Maxim', text: 'Hi'},
         {id: 2, sendBy: "Andrey", text: 'Hello'}
-    ]
+    ] as messageChatType[]
 };
 
-const messageReducer = (state = initialState, action) => {
+type initialStateType = {
+    messageUserData: object[],
+    messageUserChat: object[]
+}
+
+const messageReducer = (state = initialState, action : sendMessageCreatorActionType): initialStateType => {
 
     switch (action.type) {
 
@@ -36,7 +52,12 @@ const messageReducer = (state = initialState, action) => {
     }
 }
 
-export const sendMessageCreator = (text) => {
+type sendMessageCreatorActionType = {
+    type: typeof SEND_MESSAGE,
+    text: string
+}
+
+export const sendMessageCreator = (text: string): sendMessageCreatorActionType => {
     return {
         type: SEND_MESSAGE,
         text: text

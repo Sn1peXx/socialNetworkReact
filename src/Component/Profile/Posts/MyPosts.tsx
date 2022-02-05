@@ -1,7 +1,20 @@
+// @ts-ignore
 import profile from '../../../resources/Q5gquT-Dlhc.jpeg'
+// @ts-ignore
 import profileStyle from '../Profile.module.css'
+import {FC} from "react";
 
-const MyPosts = ({userPosts}) => {
+type UserPostsType = {
+    id: number,
+    userName: string,
+    text: string
+}
+
+type initialState = {
+    userPosts: UserPostsType[]
+}
+
+const MyPosts: FC<initialState> = ({userPosts}) => {
     const content = [...userPosts].reverse().map(item => {
         return (
             <div className={profileStyle.my_post} key={item.id}>

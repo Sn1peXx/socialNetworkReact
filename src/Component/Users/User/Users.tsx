@@ -1,11 +1,22 @@
-import React from "react";
+import {FC} from "react";
 import {NavLink} from "react-router-dom";
 
+// @ts-ignore
 import avatar from "../../../resources/customers.png";
+// @ts-ignore
 import userStyle from './Users.module.css'
+import {userType} from "../../../Redux/usersReducer";
 
 
-const Users = ({users, followingInProgress, unfollow, follow, updateCurrentPage}) => {
+type PropsType = {
+    users: Array<userType>,
+    followingInProgress: number[],
+    unfollow: (id: number) => void,
+    follow: (id: number) => void,
+    updateCurrentPage: () => void
+}
+
+const Users: FC<PropsType> = ({users, followingInProgress, unfollow, follow, updateCurrentPage}) => {
 
     const content = users.map(item => {
 

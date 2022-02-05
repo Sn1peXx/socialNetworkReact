@@ -1,11 +1,16 @@
-import React from "react";
+import * as React from "react";
 import {useFormik} from "formik";
 import * as Yup from "yup";
 
+// @ts-ignore
 import profileStyle from '../Profile.module.css'
+import {FC} from "react";
 
+type addPostType = {
+    addPostActionCreator: (message: string) => string
+}
 
-const Posts = ({addPostActionCreator}) => {
+const Posts: FC<addPostType> = ({addPostActionCreator}) => {
 
     const formik = useFormik({
         initialValues: {
@@ -16,7 +21,7 @@ const Posts = ({addPostActionCreator}) => {
         }),
         onSubmit: values => {
             addPostActionCreator(values.message);
-            values.message = '';
+            values.message = ''
         }
     })
 

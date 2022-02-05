@@ -10,19 +10,20 @@ const instance = axios.create({
 
 export const userAPI = {
 
-    getUsers(currentPage) {
+    getUsers(currentPage: number) {
         return instance.get(`users?page=${currentPage}&count=10`)
             .then(res => {
                 return res.data
             })
     },
-    follow(id) {
+    follow(id: number) {
         return instance.post(`follow/${id}`)
     },
-    unfollow(id) {
+    unfollow(id: number) {
         return instance.delete(`follow/${id}`)
     }
 }
+
 
 
 export const authAPI = {
@@ -30,7 +31,7 @@ export const authAPI = {
         return instance.get(`auth/me`)
     },
 
-    authUser(email, password, terms, captcha = null) {
+    authUser(email: string, password: string, terms: boolean, captcha = null) {
         return instance.post(`auth/login`, { email, password, terms, captcha });
     },
     authLogout() {
@@ -39,17 +40,17 @@ export const authAPI = {
 }
 
 export const profileAPI = {
-    getProfile(userId) {
+    getProfile(userId: number) {
         return instance.get(`profile/${userId}`)
             .then(res => res.data)
     },
-    getStatus(userId) {
+    getStatus(userId: number) {
         return instance.get(`profile/status/${userId}`)
     },
-    updateStatus(status) {
+    updateStatus(status: string) {
         return instance.put(`profile/status`, {status: status});
     },
-    savePhoto(photo) {
+    savePhoto(photo: any) {
         const formData = new FormData();
         formData.append("image", photo);
         return instance.put(`/profile/photo`, formData, {
@@ -58,7 +59,7 @@ export const profileAPI = {
             }
         });
     },
-    setUserData(userId, aboutMe, fullName, lookingForAJobDescription) {
+    setUserData(userId: number, aboutMe: string, fullName: string, lookingForAJobDescription: string) {
         return instance.put(`profile`, {userId, aboutMe, fullName, lookingForAJobDescription});
     }
 }

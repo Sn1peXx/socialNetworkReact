@@ -1,9 +1,14 @@
 import {useFormik} from "formik";
 import * as Yup from "yup";
+// @ts-ignore
 import profileStyle from "../Profile.module.css";
-import React from "react";
+import {FC} from "react";
 
-const ProfileChange = ({setProfileUserData}) => {
+type ProfileChangeType = {
+    setProfileUserData: (about: string, fullName: string, job: string) => void
+}
+
+const ProfileChange: FC<ProfileChangeType> = ({setProfileUserData}) => {
     const formik = useFormik({
         initialValues: {
             aboutMe: '',

@@ -1,18 +1,31 @@
-import React, {useEffect} from "react";
+import {FC, useEffect} from "react";
 import {compose} from "redux";
-import Users from "./User/Users";
 import Preloader from "../Common/Preloader/Preloader";
 import {connect} from "react-redux";
+import {getCurrentPage, getFetching, getFollowing, getUsersPage} from "../../Redux/Selectors/userSelector";
+import {AppStateType} from "../../Redux/reduxStore";
+
+// @ts-ignore
+import Users from "./User/Users.tsx";
 
 import {
     follow,
     getUsers,
-    unfollow,
-} from "../../Redux/usersReducer";
-import {getCurrentPage, getFetching, getFollowing, getUsersPage} from "../../Redux/Selectors/userSelector";
+    unfollow, userType,
+    // @ts-ignore
+} from "../../Redux/usersReducer.ts";
 
 
-const UsersContainer = (props) => {
+type PropsType = {
+    isFetching: boolean,
+    getUsers: () => void,
+    users: userType[],
+    follow: () => void,
+    unfollow: () => void,
+    followingInProgress: number[]
+}
+ 
+const UsersContainer: FC<PropsType> = (props) => {
 
     useEffect(() => {
         props.getUsers();
@@ -38,7 +51,7 @@ const UsersContainer = (props) => {
 
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: AppStateType) => {
     return {
         users: getUsersPage(state),
         currentPage: getCurrentPage(state),

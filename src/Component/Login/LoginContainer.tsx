@@ -1,10 +1,12 @@
-import React from "react";
+import * as React from "react";
 import {compose} from "redux";
 import {connect} from "react-redux";
 
-import Login from "./Login";
+// @ts-ignore
+import Login from "./Login.tsx";
 import {getAuthError, getAuthInfo, getCapthcaUrl} from "../../Redux/Selectors/authSelector";
-import {setAuthUserData} from "../../Redux/authReducer";
+// @ts-ignore
+import {setAuthUserData} from "../../Redux/authReducer.ts";
 
 
 const LoginContainer = (props) => {

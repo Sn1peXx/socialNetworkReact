@@ -1,5 +1,7 @@
-import {addPostActionCreator} from "../../../Redux/profileReducer";
-import Posts from "./Posts";
+// @ts-ignore
+import {addPostActionCreator} from "../../../Redux/profileReducer.ts";
+// @ts-ignore
+import Posts from "./Posts.tsx";
 import {connect} from "react-redux";
 import {getUsersPosts} from "../../../Redux/Selectors/profileSelector";
 

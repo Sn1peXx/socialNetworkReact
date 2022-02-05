@@ -1,9 +1,22 @@
-import React from "react";
+import * as React from "react";
 import {useFormik} from "formik";
 import * as Yup from 'yup';
+// @ts-ignore
 import loginStyle from "../Login.module.css";
+import {FC} from "react";
 
-const LoginForm = ({setAuthUserData, error, captchaUrl}) => {
+
+
+type LoginFormType = {
+    setAuthUserData: (email: string,
+                      password: string,
+                      terms: boolean,
+                      captcha: string) => void,
+    error: boolean,
+    captchaUrl: string
+}
+
+const LoginForm: FC<LoginFormType> = ({setAuthUserData, error, captchaUrl}) => {
 
     const formik = useFormik({
         initialValues: {
@@ -53,6 +66,7 @@ const LoginForm = ({setAuthUserData, error, captchaUrl}) => {
                         className={loginStyle.login_checkbox}
                         type="checkbox"
                         name={"terms"}
+                        // @ts-ignore
                         value={formik.values.terms}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}

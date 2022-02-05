@@ -1,10 +1,15 @@
-import {useEffect, useRef, useState} from "react";
-import React from "react";
+import {FC, useEffect, useRef, useState} from "react";
 
+// @ts-ignore
 import profileStyle from "../Profile.module.css";
 
+
+type ProfileStatusType = {
+    status: string,
+    updateUserStatus: (status: string) => void
+}
 // Мой статус
-const ProfileStatus = ({status, updateUserStatus}) => {
+const ProfileStatus: FC<ProfileStatusType> = ({status, updateUserStatus}) => {
 
     const [editStatus, setEditStatus] = useState(false);
     const [stateStatus, setStateStatus] = useState(status + "");

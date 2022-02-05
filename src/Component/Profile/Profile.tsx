@@ -1,16 +1,32 @@
-import {useState} from "react";
+import {FC, useState} from "react";
 
-import MyPosts from "./Posts/MyPosts";
-import PostsContainer from "./Posts/PostsContainer";
-import ProfileStatus from "./ProfileStatus/ProfileStatus";
-import ProfileChange from "./ProfileStatus/ProfileChange";
-
+// @ts-ignore
+import MyPosts from "./Posts/MyPosts.tsx";
+// @ts-ignore
+import PostsContainer from "./Posts/PostsContainer.tsx";
+// @ts-ignore
+import ProfileStatus from "./ProfileStatus/ProfileStatus.tsx";
+// @ts-ignore
+import ProfileChange from "./ProfileStatus/ProfileChange.tsx";
+// @ts-ignore
 import avatar from '../../resources/customers.png'
+// @ts-ignore
 import profileStyle from './Profile.module.css'
+import {PostType, ProfileType} from "../../Redux/profileReducer";
 
 
 
-const Profile = ({userPosts, profile, status, updateUserStatus, isOwner, savePhoto, setProfileUserData}) => {
+type ProfileTypes = {
+    userPosts: PostType[],
+    profile: ProfileType,
+    status: string,
+    updateUserStatus: () => void,
+    isOwner: boolean,
+    savePhoto: (file: string) => void,
+    setProfileUserData: () => void
+}
+
+const Profile: FC<ProfileTypes> = ({userPosts, profile, status, updateUserStatus, isOwner, savePhoto, setProfileUserData}) => {
 
     const [editMode, setEditMode] = useState(false);
 

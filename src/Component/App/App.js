@@ -5,20 +5,20 @@ import {compose} from "redux";
 
 import HeaderContainer from "../Header/HeaderContainer";
 import Nav from "../Nav/Nav";
-import ProfileContainer from '../Profile/ProfileContainer'
-import {initializeApp} from "../../Redux/appReducer";
+import ProfileContainer from '../Profile/ProfileContainer.tsx'
+import {initializeApp} from "../../Redux/appReducer.ts";
 import {initializedData} from "../../Redux/Selectors/appSelector";
 import Preloader from "../Common/Preloader/Preloader";
 
 import './App.css'
 
 const MessageContainer = React.lazy(() => import('../Message/MessageContainer'));
-const UsersContainer = React.lazy(() => import('../Users/UsersContainer'));
-const LoginContainer = React.lazy(() => import('../Login/LoginContainer'));
+const UsersContainer = React.lazy(() => import('../Users/UsersContainer.tsx'));
+const LoginContainer = React.lazy(() => import('../Login/LoginContainer.tsx'));
 
 const App = (props) => {
 
-    useEffect(() => {
+    useEffect(() => { 
         props.initializeApp();
     }, [props.initialized]);
 
@@ -37,7 +37,7 @@ const App = (props) => {
         <div className="main">
             <HeaderContainer />
             <div className="container">
-                <div className="wrapper">
+                <div className="wrapper"> 
                     <Nav />
                     <Switch>
                         <Route path="/profile/:userId?"
