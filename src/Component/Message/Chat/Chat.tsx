@@ -1,9 +1,16 @@
-import React from "react";
+import * as React from "react";
+import {FC} from "react";
 
+// @ts-ignore
 import messageStyle from '../Message.module.css'
+import {messageChatType} from "../../../Redux/messageReducer";
 
+type PropsType = {
+    messageUserChat: messageChatType[]
+    formik: any
+}
 
-const Chat = ({messageUserChat, formik}) => {
+const Chat: FC<PropsType> = ({messageUserChat, formik}) => {
 
     const content = messageUserChat.map(item => {
         return (
@@ -18,7 +25,7 @@ const Chat = ({messageUserChat, formik}) => {
             <textarea
                 className={messageStyle.chat_area}
                 name="message"
-                cols="70" rows="3"
+                cols={70} rows={3}
                 value={formik.values.message}
                 onChange={formik.handleChange}
                 placeholder="Место для сообщения"

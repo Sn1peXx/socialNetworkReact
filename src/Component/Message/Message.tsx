@@ -1,10 +1,20 @@
+import {FC} from "react";
 import {NavLink} from "react-router-dom";
 
-import ChatContainer from "./Chat/ChatContainer";
-
+// @ts-ignore
+import ChatContainer from "./Chat/ChatContainer.tsx";
+// @ts-ignore
 import messageStyle from './Message.module.css';
+import {messageChatType, messageType} from "../../Redux/messageReducer";
 
-const Message = ({messageUserData, messageUserChat, sendMessageCreator}) => {
+
+type PropsType = {
+    messageUserData: messageType[],
+    messageUserChat: messageChatType[],
+    sendMessageCreator: (str: string) => void
+}
+
+const Message: FC<PropsType> = ({messageUserData, messageUserChat, sendMessageCreator}) => {
 
     const content = messageUserData.map(item => {
 

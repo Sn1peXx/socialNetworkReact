@@ -1,6 +1,7 @@
 import {FC, useEffect} from "react";
 import {compose} from "redux";
-import Preloader from "../Common/Preloader/Preloader";
+// @ts-ignore
+import Preloader from "../Common/Preloader/Preloader.tsx";
 import {connect} from "react-redux";
 import {getCurrentPage, getFetching, getFollowing, getUsersPage} from "../../Redux/Selectors/userSelector";
 import {AppStateType} from "../../Redux/reduxStore";

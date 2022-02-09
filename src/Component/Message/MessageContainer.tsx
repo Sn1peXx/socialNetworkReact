@@ -1,9 +1,11 @@
 import {connect} from "react-redux";
-
-import {sendMessageCreator} from "../../Redux/messageReducer.ts";
-import Message from "./Message";
-import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 import {compose} from "redux";
+
+// @ts-ignore
+import {sendMessageCreator} from "../../Redux/messageReducer.ts";
+// @ts-ignore
+import Message from "./Message.tsx";
+import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 import {getMessageChat, getMessageData} from "../../Redux/Selectors/messageSelector";
 
 
@@ -14,16 +16,7 @@ const mapStateToProps = state => {
     }
 }
 
-
-const mapDispatchToProps = dispatch => {
-    return {
-        sendMessageCreator: (text) => {
-            dispatch(sendMessageCreator(text))
-        }
-    }
-}
-
 export default compose(
-    connect(mapStateToProps, mapDispatchToProps),
+    connect(mapStateToProps, {sendMessageCreator}),
     WithAuthRedirect
 )(Message)

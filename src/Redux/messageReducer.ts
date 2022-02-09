@@ -2,12 +2,12 @@ const SEND_MESSAGE = 'message/SEND_MESSAGE';
 
 let maxIdMessage = 3;
 
-type messageType = {
+export type messageType = {
     id: number,
     userName: string
 }
 
-type messageChatType = {
+export type messageChatType = {
     id: number,
     sendBy: string,
     text: string

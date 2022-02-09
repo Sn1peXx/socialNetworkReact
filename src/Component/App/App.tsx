@@ -1,29 +1,43 @@
-import React, {useEffect, Suspense} from "react";
+import {lazy, useEffect, Suspense, FC} from "react";
 import {Route, Switch, withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {compose} from "redux";
 
-import HeaderContainer from "../Header/HeaderContainer";
-import Nav from "../Nav/Nav";
+// @ts-ignore
+import HeaderContainer from "../Header/HeaderContainer.tsx";
+// @ts-ignore
+import Nav from "../Nav/Nav.tsx";
+// @ts-ignore
 import ProfileContainer from '../Profile/ProfileContainer.tsx'
+// @ts-ignore
 import {initializeApp} from "../../Redux/appReducer.ts";
+// @ts-ignore
 import {initializedData} from "../../Redux/Selectors/appSelector";
-import Preloader from "../Common/Preloader/Preloader";
+// @ts-ignore
+import Preloader from "../Common/Preloader/Preloader.tsx";
 
 import './App.css'
 
-const MessageContainer = React.lazy(() => import('../Message/MessageContainer'));
-const UsersContainer = React.lazy(() => import('../Users/UsersContainer.tsx'));
-const LoginContainer = React.lazy(() => import('../Login/LoginContainer.tsx'));
+// @ts-ignore
+const MessageContainer = lazy(() => import('../Message/MessageContainer.tsx'));
+// @ts-ignore
+const UsersContainer = lazy(() => import('../Users/UsersContainer.tsx'));
+// @ts-ignore
+const LoginContainer = lazy(() => import('../Login/LoginContainer.tsx'));
 
-const App = (props) => {
+type PropsType = {
+    initialized: boolean,
+    initializeApp: () => void
+}
+
+const App: FC<PropsType> = ({initializeApp, initialized}) => {
 
     useEffect(() => { 
-        props.initializeApp();
-    }, [props.initialized]);
+        initializeApp();
+    }, [initialized]);
 
 
-    if (!props.initialized) {
+    if (!initialized) {
         return (
             <div className="container">
                 <div className="center">

@@ -1,9 +1,18 @@
 import {NavLink} from "react-router-dom";
 
+// @ts-ignore
 import headerStyle from './Header.module.css'
+// @ts-ignore
 import logo from '../../resources/logo_top(no_text).png';
+import {FC} from "react";
 
-const Header = ({isAuth, logoutAuthUserData, login}) => {
+type PropsType = {
+    isAuth: boolean,
+    logoutAuthUserData: () => void,
+    login: string
+}
+
+const Header: FC<PropsType> = ({isAuth, logoutAuthUserData, login}) => {
     return (
         <header className={headerStyle.header}>
             <div className="container">

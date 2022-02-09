@@ -1,10 +1,20 @@
-import Chat from "./Chat";
-
-import '../Message.module.css'
+import {FC} from "react";
 import {useFormik} from "formik";
 import * as Yup from "yup";
 
-const ChatContainer = ({sendMessageCreator, messageUserChat}) => {
+import {messageChatType} from "../../../Redux/messageReducer";
+// @ts-ignore
+import Chat from "./Chat.tsx";
+
+import '../Message.module.css'
+
+
+type PropsType = {
+    sendMessageCreator: (str: string) => void,
+    messageUserChat: messageChatType[]
+}
+
+const ChatContainer: FC<PropsType> = ({sendMessageCreator, messageUserChat}) => {
 
     const formik = useFormik({
         initialValues: {

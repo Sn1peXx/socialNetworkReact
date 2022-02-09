@@ -1,5 +1,6 @@
+// @ts-ignore
 import preloader from "../../../resources/Infinity-1.8s-200px.svg";
-import React from "react";
+import * as React from "react";
 
 const Preloader = () => {
     return (

@@ -1,5 +1,7 @@
-import navStyle from './Nav.module.css'
 import {NavLink} from "react-router-dom";
+
+// @ts-ignore
+import navStyle from './Nav.module.css'
 
 const Nav = () => {
     return (
